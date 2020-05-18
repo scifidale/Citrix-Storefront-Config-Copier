@@ -5,19 +5,27 @@
 # No warranties are given by running this script
 
 
-$Storename = "EEC"
+###### CHANGE THESE VARIABLES TO SUIT  #######
 $RemoteSFServer = "CTXSFTest"
 $BackupFolder = "C:\Test"
 $RemoteDir = "Test"
 $HostBaseURL = "https://home.vhorizon.co.uk"
+###### END OF VARIABLES #####
+
+
 
 $SourceQuestion = Read-Host -Prompt "Is this server the source or Destination S/D?"
 
-IF (Test-Path $BackupFolder -eq True) {} ELSE
-{New-Item -path $BackupFolder -ItemType Directory}
 
-If (Test-Path $RemoteSFServer\C$\$RemoteDir -eq True){} Else
-{New-Item -path $RemoteSFServer\C$\$BackupFolder -ItemType Directory}
+# Checking Existance of Folders Specified above, creates them if it doesn't exist
+$FolderCheck = Test-path "$BackupFolder"
+$RemoteFolderCheck = Test-Path "\\$RemoteSFServer\C$\$RemoteDir"
+IF ("$FolderCheck" -eq 'False') {New-Item -path $BackupFolder -ItemType Directory} ELSE{
+}
+
+IF ("$RemoteFolderCheck" -eq 'False'){Robocopy $backupFolder \\$RemoteSFServer\C$\$RemoteDir} Else{
+}
+
 
 #IF statement imports Storefront Cmdlets and backs up current Storefront Store and configurations to a zip file
 #ELSE statement assumes script is being run as destination mode, the script imports the storefront cmdlets
