@@ -16,3 +16,6 @@ Choosing Destionation(D) from the script firstly creates a backup of the current
 the configuration copied from the source StoreFront server. 
 
 As with all scripts please test before running in production and no warranties are implied or given. 
+
+
+New text
